@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevMarathon | The Arena Awaits</title>
+    <style>
+        :root {
+            --bg-primary: #050505;
+            --accent-color: #00ff88;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --grid-line: rgba(0, 255, 136, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace; /* "Kod" hissi için monospace */
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden; /* Scroll yok, tek ekran */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Arka Plan Efekti - Hareketli Izgara */
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            animation: grid-move 20s linear infinite;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* Merkezdeki Işık Efekti */
+        .glow-spot {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* İçerik Kutusu */
+        .content {
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        /* Ana Başlık */
+        h1 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(180deg, #fff 0%, #666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: slideUp 1s ease-out 0.5s forwards;
+        }
+
+        /* Alt Metin */
+        p.subtitle {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+            opacity: 0;
+            animation: slideUp 1s ease-out 1s forwards;
+        }
+
+        /* Yanıp Sönen İmleç Efekti */
+        .status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            background: rgba(0,0,0,0.5);
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.5s forwards;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background-color: var(--accent-color);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        /* Alt Bilgi */
+        footer {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.8rem;
+            color: #444;
+            letter-spacing: 1px;
+        }
+
+        /* Animasyonlar */
+        @keyframes grid-move {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(40px) translateZ(-200px); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+    <div class="glow-spot"></div>
+
+    <div class="content">
+        <div class="logo">DevMarathon</div>
+
+        <h1>Coding is not a Sprint.<br>It's a Marathon.</h1>
+
+        <p class="subtitle">
+            The arena for the next generation of developers is being built. 
+            <br>
+            Meritocracy over bureaucracy.
+        </p>
+
+        <div class="status-badge">
+            SYSTEM STATUS: INITIALIZING <span class="cursor"></span>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 DEVMARATHON LABS
+    </footer>
+
+</body>
+</html>
