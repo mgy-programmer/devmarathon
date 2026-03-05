@@ -1,188 +1,885 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevMarathon | The Arena Awaits</title>
-    <style>
-        :root {
-            --bg-primary: #050505;
-            --accent-color: #00ff88;
-            --text-primary: #ffffff;
-            --text-secondary: #888888;
-            --grid-line: rgba(0, 255, 136, 0.03);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevMarathon — Ship Real Products with AI</title>
+  <meta name="description" content="AI-guided 72-hour build challenges for developers who want to ship real products. Not tutorials. Not toy projects. Real shipping." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            font-family: 'Courier New', monospace; /* "Kod" hissi için monospace */
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            height: 100vh;
-            overflow: hidden; /* Scroll yok, tek ekran */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+    :root {
+      --bg: #080808;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --accent: #e8ff47;
+      --accent-dim: rgba(232, 255, 71, 0.12);
+      --red: #ff4545;
+      --text: #f0f0f0;
+      --muted: #666;
+      --mono: 'Space Mono', monospace;
+      --display: 'Bebas Neue', sans-serif;
+      --body: 'DM Sans', sans-serif;
+    }
 
-        /* Arka Plan Efekti - Hareketli Izgara */
-        .bg-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 200%;
-            background-image: 
-                linear-gradient(var(--grid-line) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-            background-size: 40px 40px;
-            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
-            animation: grid-move 20s linear infinite;
-            z-index: -1;
-            opacity: 0.6;
-        }
+    html { scroll-behavior: smooth; }
 
-        /* Merkezdeki Işık Efekti */
-        .glow-spot {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, transparent 70%);
-            z-index: -1;
-            pointer-events: none;
-        }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-        /* İçerik Kutusu */
-        .content {
-            text-align: center;
-            z-index: 10;
-            padding: 20px;
-        }
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
 
-        /* Logo */
-        .logo {
-            font-size: 1.5rem;
-            letter-spacing: 4px;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            opacity: 0;
-            animation: fadeIn 2s ease-out forwards;
-        }
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 8, 8, 0.85);
+      backdrop-filter: blur(12px);
+    }
 
-        /* Ana Başlık */
-        h1 {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(180deg, #fff 0%, #666 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0;
-            animation: slideUp 1s ease-out 0.5s forwards;
-        }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-decoration: none;
+    }
 
-        /* Alt Metin */
-        p.subtitle {
-            font-size: clamp(1rem, 4vw, 1.25rem);
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            line-height: 1.6;
-            opacity: 0;
-            animation: slideUp 1s ease-out 1s forwards;
-        }
+    .nav-logo span { color: var(--muted); }
 
-        /* Yanıp Sönen İmleç Efekti */
-        .status-badge {
-            display: inline-block;
-            padding: 8px 16px;
-            border: 1px solid #333;
-            border-radius: 4px;
-            background: rgba(0,0,0,0.5);
-            font-size: 0.9rem;
-            color: var(--accent-color);
-            margin-top: 20px;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1.5s forwards;
-        }
+    .nav-logo svg { display: block; height: 36px; width: auto; }
 
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 15px;
-            background-color: var(--accent-color);
-            margin-left: 5px;
-            animation: blink 1s infinite;
-            vertical-align: middle;
-        }
+    .nav-badge {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
 
-        /* Alt Bilgi */
-        footer {
-            position: absolute;
-            bottom: 30px;
-            font-size: 0.8rem;
-            color: #444;
-            letter-spacing: 1px;
-        }
+    .nav-badge b { color: var(--accent); }
 
-        /* Animasyonlar */
-        @keyframes grid-move {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(40px) translateZ(-200px); }
-        }
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 40px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
 
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+    .hero-tag::before {
+      content: '▶ ';
+      opacity: 0.6;
+    }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-    </style>
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(72px, 11vw, 148px);
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+    }
+
+    h1 .accent { color: var(--accent); }
+    h1 .dim { color: var(--muted); }
+
+    .hero-sub {
+      font-family: var(--body);
+      font-size: clamp(16px, 2vw, 21px);
+      color: #aaa;
+      font-weight: 300;
+      max-width: 540px;
+      margin: 24px 0 48px;
+      line-height: 1.65;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.5s;
+    }
+
+    .hero-sub b { color: var(--text); font-weight: 500; }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.65s;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #080808;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 16px 32px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(232, 255, 71, 0.3);
+    }
+
+    .btn-ghost {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
+
+    .founding-note {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 16px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.8s;
+    }
+
+    .founding-note b { color: var(--accent); }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 14px 0;
+      background: var(--surface);
+    }
+
+    .ticker {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+    }
+
+    .ticker-item {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      padding: 0 48px;
+      letter-spacing: 0.05em;
+    }
+
+    .ticker-item .dot {
+      color: var(--accent);
+      margin-right: 12px;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION SHARED ── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 48px;
+      background: var(--border);
+    }
+
+    /* ── PROBLEM ── */
+    .problem {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 48px;
+    }
+
+    .problem-card {
+      background: var(--surface);
+      padding: 36px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .problem-card.bad::before {
+      content: '✗';
+      position: absolute;
+      top: 20px; right: 24px;
+      font-size: 18px;
+      color: var(--red);
+      opacity: 0.5;
+    }
+
+    .problem-card.good::before {
+      content: '✓';
+      position: absolute;
+      top: 20px; right: 24px;
+      font-size: 18px;
+      color: var(--accent);
+      opacity: 0.6;
+    }
+
+    .problem-card h3 {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .problem-card.bad h3 { color: var(--red); }
+    .problem-card.good h3 { color: var(--accent); }
+
+    .problem-card ul {
+      list-style: none;
+    }
+
+    .problem-card ul li {
+      font-size: 14px;
+      color: #888;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--mono);
+      line-height: 1.5;
+    }
+
+    .problem-card ul li:last-child { border-bottom: none; }
+
+    .problem-card.good ul li { color: #bbb; }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .how h2 {
+      font-family: var(--display);
+      font-size: clamp(48px, 7vw, 88px);
+      line-height: 0.95;
+      margin-bottom: 64px;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      align-items: start;
+      gap: 32px;
+      padding: 36px 0;
+      border-top: 1px solid var(--border);
+      transition: background 0.2s;
+      cursor: default;
+    }
+
+    .step:hover { background: rgba(255,255,255,0.02); }
+
+    .step-num {
+      font-family: var(--display);
+      font-size: 56px;
+      color: var(--border);
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .step:hover .step-num { color: var(--accent); }
+
+    .step-content h3 {
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      color: #777;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .step-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      border: 1px solid var(--accent-dim);
+      background: var(--accent-dim);
+      padding: 4px 10px;
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+
+    /* ── FOUNDING MEMBER ── */
+    .founding {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, transparent, rgba(232,255,71,0.03) 50%, transparent);
+    }
+
+    .founding-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .founding h2 {
+      font-family: var(--display);
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+
+    .founding h2 .accent { color: var(--accent); }
+
+    .founding-desc {
+      font-size: 15px;
+      color: #888;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .perks {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .perk {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 14px;
+      color: #bbb;
+      font-family: var(--mono);
+    }
+
+    .perk-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(232,255,71,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .price-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 48px;
+      position: relative;
+    }
+
+    .price-card::before {
+      content: 'FOUNDING MEMBER';
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 32px;
+    }
+
+    .price-main {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .price-amount {
+      font-family: var(--display);
+      font-size: 88px;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .price-currency {
+      font-family: var(--mono);
+      font-size: 24px;
+      color: var(--muted);
+    }
+
+    .price-old {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-bottom: 24px;
+    }
+
+    .price-desc {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 36px;
+      line-height: 1.6;
+      font-family: var(--mono);
+    }
+
+    .slots-bar {
+      margin-bottom: 32px;
+    }
+
+    .slots-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .slots-label b { color: var(--red); }
+
+    .progress {
+      height: 3px;
+      background: var(--border);
+      border-radius: 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 34%;
+      transition: width 1s ease;
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      padding: 120px 0;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-family: var(--display);
+      font-size: clamp(52px, 9vw, 120px);
+      line-height: 0.92;
+      margin-bottom: 32px;
+    }
+
+    .final-cta h2 .accent { color: var(--accent); }
+    .final-cta h2 .dim { color: var(--muted); }
+
+    .final-cta p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 48px;
+      font-family: var(--mono);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer .f-logo {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer .f-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    footer .f-links a {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    footer .f-links a:hover { color: var(--text); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── CURSOR BLINK ── */
+    .blink {
+      display: inline-block;
+      width: 3px;
+      height: 0.85em;
+      background: var(--accent);
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* ── GRID BG ── */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(232,255,71,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,255,71,0.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      pointer-events: none;
+      z-index: -1;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .container { padding: 0 20px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 48px 1fr; }
+      .step-tag { display: none; }
+      .founding-inner { grid-template-columns: 1fr; gap: 48px; }
+      .price-card { padding: 32px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+      footer .f-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="bg-grid"></div>
-    <div class="glow-spot"></div>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">
+      <svg width="520" height="120" viewBox="0 0 520 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_16_42)">
+          <path d="M516 0H4C1.79086 0 0 1.79086 0 4V116C0 118.209 1.79086 120 4 120H516C518.209 120 520 118.209 520 116V4C520 1.79086 518.209 0 516 0Z" fill="#080808"/>
+          <path d="M104 16H16V104H104V16Z" stroke="#1E1E1E" stroke-width="1.5"/>
+          <path d="M16 30V16H30" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square"/>
+          <path d="M90 104H104V90" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square"/>
+          <path d="M67 38L97 60L67 82" stroke="url(#paint0_nav)" stroke-width="7" stroke-linecap="square"/>
+          <path opacity="0.9" d="M25 50H55" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square"/>
+          <path opacity="0.6" d="M32 60H62" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square"/>
+          <path opacity="0.35" d="M25 70H55" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square"/>
+          <path d="M135.557 57H126.276V30.8182H135.634C138.267 30.8182 140.534 31.3423 142.435 32.3906C144.335 33.4304 145.797 34.9261 146.82 36.8778C147.851 38.8295 148.366 41.1648 148.366 43.8835C148.366 46.6108 147.851 48.9545 146.82 50.9148C145.797 52.875 144.327 54.3793 142.409 55.4276C140.5 56.4759 138.216 57 135.557 57ZM131.811 52.2571H135.327C136.963 52.2571 138.339 51.9673 139.456 51.3878C140.581 50.7997 141.425 49.892 141.987 48.6648C142.558 47.429 142.844 45.8352 142.844 43.8835C142.844 41.9489 142.558 40.3679 141.987 39.1406C141.425 37.9134 140.585 37.0099 139.469 36.4304C138.352 35.8509 136.976 35.5611 135.339 35.5611H131.811V52.2571ZM152.467 57V30.8182H170.109V35.3821H158.002V41.6207H169.201V46.1847H158.002V52.4361H170.16V57H152.467ZM179.24 30.8182L185.568 50.7102H185.811L192.152 30.8182H198.288L189.263 57H182.129L173.091 30.8182H179.24Z" fill="#F0F0F0"/>
+          <path d="M207.276 30.8182H214.102L221.312 48.4091H221.619L228.83 30.8182H235.656V57H230.287V39.9588H230.07L223.294 56.8722H219.638L212.862 39.8949H212.645V57H207.276V30.8182ZM244.73 57H238.798L247.836 30.8182H254.97L263.995 57H258.064L251.505 36.8011H251.301L244.73 57ZM244.359 46.7088H258.37V51.0298H244.359V46.7088ZM267.147 57V30.8182H277.476C279.453 30.8182 281.141 31.1719 282.539 31.8793C283.945 32.5781 285.015 33.571 285.748 34.858C286.489 36.1364 286.86 37.6406 286.86 39.3707C286.86 41.1094 286.485 42.6051 285.735 43.858C284.985 45.1023 283.898 46.0568 282.475 46.7216C281.06 47.3864 279.347 47.7188 277.336 47.7188H270.419V43.2699H276.441C277.498 43.2699 278.375 43.125 279.074 42.8352C279.773 42.5455 280.293 42.1108 280.634 41.5312C280.983 40.9517 281.158 40.2315 281.158 39.3707C281.158 38.5014 280.983 37.7685 280.634 37.1719C280.293 36.5753 279.769 36.1236 279.061 35.8168C278.363 35.5014 277.48 35.3438 276.415 35.3438H272.682V57H267.147ZM281.286 45.0852L287.793 57H281.682L275.316 45.0852H281.286ZM295.284 57H289.353L298.391 30.8182H305.525L314.55 57H308.618L302.06 36.8011H301.855L295.284 57ZM294.914 46.7088H308.925V51.0298H294.914V46.7088ZM313.505 35.3821V30.8182H335.008V35.3821H326.992V57H321.521V35.3821H313.505ZM338.549 57V30.8182H344.085V41.6207H355.322V30.8182H360.844V57H355.322V46.1847H344.085V57H338.549ZM389.468 43.9091C389.468 46.7642 388.927 49.1932 387.844 51.196C386.771 53.1989 385.305 54.7287 383.447 55.7855C381.597 56.8338 379.518 57.358 377.208 57.358C374.881 57.358 372.793 56.8295 370.944 55.7727C369.094 54.7159 367.633 53.1861 366.559 51.1832C365.485 49.1804 364.948 46.7557 364.948 43.9091C364.948 41.054 365.485 38.625 366.559 36.6222C367.633 34.6193 369.094 33.0937 370.944 32.0455C372.793 30.9886 374.881 30.4602 377.208 30.4602C379.518 30.4602 381.597 30.9886 383.447 32.0455C385.305 33.0937 386.771 34.6193 387.844 36.6222C388.927 38.625 389.468 41.054 389.468 43.9091ZM383.856 43.9091C383.856 42.0597 383.579 40.5 383.025 39.2301C382.479 37.9602 381.708 36.9972 380.711 36.3409C379.714 35.6847 378.546 35.3565 377.208 35.3565C375.87 35.3565 374.702 35.6847 373.705 36.3409C372.708 36.9972 371.933 37.9602 371.379 39.2301C370.833 40.5 370.56 42.0597 370.56 43.9091C370.56 45.7585 370.833 47.3182 371.379 48.5881C371.933 49.858 372.708 50.821 373.705 51.4773C374.702 52.1335 375.87 52.4616 377.208 52.4616C378.546 52.4616 379.714 52.1335 380.711 51.4773C381.708 50.821 382.479 49.858 383.025 48.5881C383.579 47.3182 383.856 45.7585 383.856 43.9091ZM415.468 30.8182V57H410.686L399.296 40.5213H399.104V57H393.569V30.8182H398.426L409.728 47.2841H409.958V30.8182H415.468Z" fill="#E8FF47"/>
+          <path d="M124 64H490" stroke="#1E1E1E"/>
+        </g>
+        <defs>
+          <linearGradient id="paint0_nav" x1="67" y1="38" x2="4162.91" y2="2830.67" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#E8FF47"/>
+            <stop offset="1" stop-color="#C8E600"/>
+          </linearGradient>
+          <clipPath id="clip0_16_42">
+            <rect width="520" height="120" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+    </a>
+    <div class="nav-badge">EARLY ACCESS &nbsp;·&nbsp; <b>34/100</b> slots taken</div>
+  </nav>
 
-    <div class="content">
-        <div class="logo">DevMarathon</div>
-
-        <h1>Coding is not a Sprint.<br>It's a Marathon.</h1>
-
-        <p class="subtitle">
-            The arena for the next generation of developers is being built. 
-            <br>
-            Meritocracy over bureaucracy.
-        </p>
-
-        <div class="status-badge">
-            SYSTEM STATUS: INITIALIZING <span class="cursor"></span>
-        </div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">AI-Powered Build Challenges</div>
+    <h1>
+      SHIP<br>
+      <span class="accent">REAL</span><br>
+      <span class="dim">PRODUCTS</span>
+    </h1>
+    <p class="hero-sub">
+      You have the AI tools.<br>
+      You watch the tutorials.<br>
+      <b>But you still don't ship.</b><br><br>
+      DevMarathon gives you a structured 72-hour challenge,
+      an AI co-founder, and a real deadline.
+    </p>
+    <div class="hero-cta-group">
+      <!-- Replace href with your Lemon Squeezy payment link -->
+      <a href="mailto:hello@devmarathon.com?subject=Early Access" class="btn-primary">
+        Join as Founding Member &nbsp;→
+      </a>
+      <a href="https://github.com/DevMarathon" class="btn-ghost" target="_blank">
+        View on GitHub ↗
+      </a>
     </div>
+    <p class="founding-note">
+      <b>$15 one-time</b> &nbsp;·&nbsp; First 50 members only &nbsp;·&nbsp; Lifetime 50% discount on all plans
+    </p>
+  </div>
 
-    <footer>
-        &copy; 2025 DEVMARATHON LABS
-    </footer>
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span class="ticker-item"><span class="dot">●</span>72-hour build challenge</span>
+      <span class="ticker-item"><span class="dot">●</span>AI-generated architecture</span>
+      <span class="ticker-item"><span class="dot">●</span>Real deadline. Real product.</span>
+      <span class="ticker-item"><span class="dot">●</span>Public portfolio score</span>
+      <span class="ticker-item"><span class="dot">●</span>Ship or don't. No in-between.</span>
+      <span class="ticker-item"><span class="dot">●</span>GitHub integration</span>
+      <span class="ticker-item"><span class="dot">●</span>AI task breakdown</span>
+      <span class="ticker-item"><span class="dot">●</span>Proof of work, not promises</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item"><span class="dot">●</span>72-hour build challenge</span>
+      <span class="ticker-item"><span class="dot">●</span>AI-generated architecture</span>
+      <span class="ticker-item"><span class="dot">●</span>Real deadline. Real product.</span>
+      <span class="ticker-item"><span class="dot">●</span>Public portfolio score</span>
+      <span class="ticker-item"><span class="dot">●</span>Ship or don't. No in-between.</span>
+      <span class="ticker-item"><span class="dot">●</span>GitHub integration</span>
+      <span class="ticker-item"><span class="dot">●</span>AI task breakdown</span>
+      <span class="ticker-item"><span class="dot">●</span>Proof of work, not promises</span>
+    </div>
+  </div>
 
-</body>
-</html>
+  <!-- PROBLEM -->
+  <section class="problem">
+    <div class="container">
+      <div class="section-label">The Problem</div>
+      <div class="problem-grid">
+        <div class="problem-card bad">
+          <h3>The Loop You're Stuck In</h3>
+          <ul>
+            <li>Watch tutorial → don't ship</li>
+            <li>Use AI → still don't ship</li>
+            <li>Start project → abandon day 3</li>
+            <li>No portfolio evidence</li>
+            <li>No structure, no accountability</li>
+          </ul>
+        </div>
+        <div class="problem-card good">
+          <h3>What Actually Works</h3>
+          <ul>
+            <li>Structured challenge with a hard deadline</li>
+            <li>AI builds the architecture for you</li>
+            <li>Daily checkpoints force momentum</li>
+            <li>Public portfolio score at the end</li>
+            <li>Proof that you actually shipped</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div class="container">
+      <div class="section-label">How It Works</div>
+      <h2>FOUR STEPS.<br>ONE PRODUCT.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h3>PICK A MARATHON</h3>
+            <p>Choose a 72-hour challenge — "Build an AI SaaS", "Ship a micro-startup", "Revenue-ready MVP". Every marathon has a clear goal and measurable output.</p>
+          </div>
+          <div class="step-tag">72h / 48h / 7d</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h3>AI KICKOFF</h3>
+            <p>Enter your idea, stack, and target user. The AI generates system architecture, task breakdown, repo structure, milestone plan, and risk list. Your co-founder is ready.</p>
+          </div>
+          <div class="step-tag">AI Co-Founder</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h3>BUILD UNDER PRESSURE</h3>
+            <p>Countdown timer. Daily checkpoints. AI progress reminders. Streak system. If you haven't committed in 12 hours, you'll hear about it.</p>
+          </div>
+          <div class="step-tag">Pressure System</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h3>SHIP & SCORE</h3>
+            <p>AI evaluates your working features, code quality, deployability, and UX. You get a public portfolio page and a shareable skill score. CV is dead. This is your proof.</p>
+          </div>
+          <div class="step-tag">Public Portfolio</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDING MEMBER -->
+  <section class="founding">
+    <div class="container">
+      <div class="founding-inner">
+        <div>
+          <div class="section-label">Founding Member</div>
+          <h2>BUILD<br>THE <span class="accent">FUTURE</span><br>FIRST.</h2>
+          <p class="founding-desc">
+            First 50 members shape what DevMarathon becomes.
+            Direct access to roadmap decisions, lifetime pricing lock,
+            and beta access before public launch.
+          </p>
+          <div class="perks">
+            <div class="perk">
+              <div class="perk-icon">⚡</div>
+              Lifetime 50% discount on all future plans
+            </div>
+            <div class="perk">
+              <div class="perk-icon">🔑</div>
+              Beta access before public launch
+            </div>
+            <div class="perk">
+              <div class="perk-icon">🗺</div>
+              Direct influence on roadmap
+            </div>
+            <div class="perk">
+              <div class="perk-icon">🏷</div>
+              Founding Member badge on public profile
+            </div>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-main">
+            <span class="price-currency">$</span>
+            <span class="price-amount">15</span>
+          </div>
+          <div class="price-old">Regular price: $29+/mo</div>
+          <div class="price-desc">
+            One-time payment.<br>
+            No subscription. No risk.<br>
+            Full refund if we don't launch.
+          </div>
+          <div class="slots-bar">
+            <div class="slots-label">
+              <span>Slots remaining</span>
+              <b>66 left</b>
+            </div>
+            <div class="progress">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+          <!-- Replace href with your Lemon Squeezy payment link -->
+          <a href="mailto:hello@devmarathon.com?subject=Early Access" class="btn-primary" style="width:100%;justify-content:center;">
+            Claim Your Spot &nbsp;→
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>
+        STOP<br>
+        <span class="accent">WATCHING.</span><br>
+        <span class="dim">START SHIPPING.</span>
+      </h2>
+      <p>devmarathon.com &nbsp;·&nbsp; building in public<span class="blink"></span></p>
+      <!-- Replace href with your Lemon Squeezy payment link -->
+      <a href="mailto:hello@devmarathon.com?subject=Early Access" class="btn-primary" style="font-size:15px;padding:20px 48px;">
+        Join DevMarathon — $15 &nbsp;→
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="f-logo">© 2026 DevMarathon</div>
+    <div class="f-links">
+      <a href="https://github.com/DevMarathon" target="_blank">GitHub</a>
+      <a href="https://x.com/devmarathonai" target="_blank">X / Twitter</a>
+      <a href="/cdn-cgi/l/email-protection#ec8489808083ac88899a818d9e8d98848382c28f8381">Contact<
