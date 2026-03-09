@@ -1,39 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms of Service — DevMarathon</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #080808; --border: #1e1e1e;
-      --accent: #e8ff47; --text: #f0f0f0; --muted: #666;
-      --mono: 'Space Mono', monospace; --body: 'DM Sans', sans-serif;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.7; }
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid var(--border); background: rgba(8,8,8,0.95); }
-    .nav-logo { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--accent); text-decoration: none; }
-    .nav-back { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; }
-    .nav-back:hover { color: var(--text); }
-    main { max-width: 720px; margin: 0 auto; padding: 80px 40px; }
-    .page-label { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; }
-    h1 { font-family: var(--mono); font-size: 28px; font-weight: 700; margin-bottom: 8px; }
-    .meta { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-bottom: 56px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
-    h2 { font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin: 48px 0 16px; }
-    p { color: #aaa; margin-bottom: 16px; font-size: 15px; }
-    ul { color: #aaa; padding-left: 20px; margin-bottom: 16px; font-size: 15px; }
-    ul li { margin-bottom: 8px; }
-    a { color: var(--accent); }
-    footer { border-top: 1px solid var(--border); padding: 32px 40px; display: flex; justify-content: space-between; align-items: center; margin-top: 80px; }
-    footer span { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-    footer a { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--text); }
-    @media (max-width: 768px) { nav { padding: 16px 20px; } main { padding: 48px 20px; } footer { padding: 24px 20px; flex-direction: column; gap: 12px; } }
+
+    :root {
+      --bg: #080808;
+      --border: #1e1e1e;
+      --accent: #e8ff47;
+      --text: #f0f0f0;
+      --muted: #666;
+      --mono: 'Space Mono', monospace;
+      --body: 'DM Sans', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 8, 8, 0.95);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+    }
+
+    .nav-back:hover {
+      color: var(--text);
+    }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    .page-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .meta {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 56px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h2 {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 48px 0 16px;
+    }
+
+    p {
+      color: #aaa;
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    ul {
+      color: #aaa;
+      padding-left: 20px;
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 80px;
+    }
+
+    footer span {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer a {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      main {
+        padding: 48px 20px;
+      }
+
+      footer {
+        padding: 24px 20px;
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <nav>
     <a class="nav-logo" href="/">DEVMARATHON</a>
@@ -46,10 +184,13 @@
     <div class="meta">Last updated: June 2026 &nbsp;·&nbsp; DevMarathon</div>
 
     <h2>1. Acceptance of Terms</h2>
-    <p>By accessing or using DevMarathon ("the Platform", "we", "us"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Platform.</p>
+    <p>By accessing or using DevMarathon ("the Platform", "we", "us"), you agree to be bound by these Terms of Service.
+      If you do not agree to these terms, please do not use the Platform.</p>
 
     <h2>2. Description of Service</h2>
-    <p>DevMarathon is an AI-powered build challenge platform where developers complete time-limited challenges to ship real products. The Platform provides AI-guided task planning, structured build challenges, progress tracking, and project showcase features.</p>
+    <p>DevMarathon is an AI-powered build challenge platform where developers complete time-limited challenges to ship
+      real products. The Platform provides AI-guided task planning, structured build challenges, progress tracking, and
+      project showcase features.</p>
     <p>During the current pre-launch phase, purchasing an Early Access / Founding Member plan grants you:</p>
     <ul>
       <li>Priority access to the platform upon launch</li>
@@ -58,17 +199,27 @@
     </ul>
 
     <h2>3. Eligibility</h2>
-    <p>You must be at least 18 years of age to use DevMarathon. By using the Platform, you represent and warrant that you meet this requirement.</p>
+    <p>You must be at least 18 years of age to use DevMarathon. By using the Platform, you represent and warrant that
+      you meet this requirement.</p>
 
     <h2>4. Founding Member Program</h2>
-    <p>The Founding Member program is a one-time early access purchase available to the first 100 users. Benefits include long-term pricing discounts (valid as long as the platform operates), beta access before public launch, and a Founding Member badge on your public profile. These benefits are tied to your account and are non-transferable.</p>
-    <p>DevMarathon reserves the right to modify benefit details with reasonable notice to members. Core pricing discounts will not be reduced below 30% for active Founding Members.</p>
-
+    <p>The Founding Member program is a pre-launch early access subscription available to the first 50 users. Founding
+      Members pay $15/mo for the Pro plan (normally $29/mo) — a permanent 50% discount valid for as long as the platform
+      operates under current ownership. Benefits also include beta access before public launch and a Founding Member
+      badge on your public profile. These benefits are tied to your account and are non-transferable.</p>
+    <p>DevMarathon reserves the right to modify benefit details with reasonable notice to members. The 50% pricing
+      discount will not be reduced for active Founding Members as long as the platform operates under current ownership.
+    </p>
     <h2>5. Payment and Billing</h2>
-    <p>Payments are processed securely through Lemon Squeezy, our Merchant of Record. Lemon Squeezy handles all payment processing, tax calculation, and compliance. By purchasing, you agree to Lemon Squeezy's terms of service in addition to ours.</p>
+    <p>Payments are processed securely through Lemon Squeezy, our Merchant of Record. Lemon Squeezy handles all payment
+      processing, tax calculation, and compliance. By purchasing, you agree to Lemon Squeezy's terms of service in
+      addition to ours.</p>
 
     <h2>6. Intellectual Property</h2>
-    <p>You retain full ownership of all projects, code, and content you create on the Platform. DevMarathon retains ownership of the Platform itself, including its AI systems, design, and infrastructure. By using the Platform, you grant us a limited, non-exclusive license to display your public project content for showcase and promotional purposes. You may revoke this by making your project private or deleting it.</p>
+    <p>You retain full ownership of all projects, code, and content you create on the Platform. DevMarathon retains
+      ownership of the Platform itself, including its AI systems, design, and infrastructure. By using the Platform, you
+      grant us a limited, non-exclusive license to display your public project content for showcase and promotional
+      purposes. You may revoke this by making your project private or deleting it.</p>
 
     <h2>7. Prohibited Conduct</h2>
     <p>You agree not to:</p>
@@ -81,16 +232,23 @@
     </ul>
 
     <h2>8. Disclaimers</h2>
-    <p>DevMarathon is provided "as is" without warranties of any kind. We do not guarantee that use of the Platform will result in a deployable or commercially viable product. AI-generated content and suggestions are provided for assistance only and should be reviewed carefully before use in production environments.</p>
+    <p>DevMarathon is provided "as is" without warranties of any kind. We do not guarantee that use of the Platform will
+      result in a deployable or commercially viable product. AI-generated content and suggestions are provided for
+      assistance only and should be reviewed carefully before use in production environments.</p>
 
     <h2>9. Limitation of Liability</h2>
-    <p>To the maximum extent permitted by law, DevMarathon shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Platform. Our total liability shall not exceed the amount you paid for your current plan.</p>
+    <p>To the maximum extent permitted by law, DevMarathon shall not be liable for any indirect, incidental, special, or
+      consequential damages arising from your use of the Platform. Our total liability shall not exceed the amount you
+      paid for your current plan.</p>
 
     <h2>10. Changes to Terms</h2>
-    <p>We reserve the right to modify these Terms at any time. We will notify users of significant changes via email at least 14 days before changes take effect. Continued use of the Platform after changes constitutes acceptance of the new Terms.</p>
+    <p>We reserve the right to modify these Terms at any time. We will notify users of significant changes via email at
+      least 14 days before changes take effect. Continued use of the Platform after changes constitutes acceptance of
+      the new Terms.</p>
 
     <h2>11. Contact</h2>
-    <p>For any questions regarding these Terms, please contact us at <a href="mailto:devmarathonapp@gmail.com">devmarathonapp@gmail.com</a>.</p>
+    <p>For any questions regarding these Terms, please contact us at <a
+        href="mailto:devmarathonapp@gmail.com">devmarathonapp@gmail.com</a>.</p>
   </main>
 
   <footer>
@@ -102,4 +260,5 @@
     </div>
   </footer>
 </body>
+
 </html>
