@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DevMarathon — Ship Real Products with AI</title>
-  <meta name="description" content="AI-guided 72-hour build challenges for developers who want to ship real products. Not tutorials. Not toy projects. Real shipping." />
+  <meta name="description"
+    content="AI-guided 72-hour build challenges for developers who want to ship real products. Not tutorials. Not toy projects. Real shipping." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --bg: #080808;
@@ -26,7 +36,9 @@
       --body: 'DM Sans', sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--bg);
@@ -51,7 +63,9 @@
     /* ── NAV ── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
@@ -71,9 +85,15 @@
       text-decoration: none;
     }
 
-    .nav-logo span { color: var(--muted); }
+    .nav-logo span {
+      color: var(--muted);
+    }
 
-    .nav-logo svg { display: block; height: 36px; width: auto; }
+    .nav-logo svg {
+      display: block;
+      height: 36px;
+      width: auto;
+    }
 
     .nav-badge {
       font-family: var(--mono);
@@ -84,7 +104,9 @@
       border-radius: 2px;
     }
 
-    .nav-badge b { color: var(--accent); }
+    .nav-badge b {
+      color: var(--accent);
+    }
 
     /* ── HERO ── */
     .hero {
@@ -125,8 +147,13 @@
       animation: fadeUp 0.7s ease forwards 0.35s;
     }
 
-    h1 .accent { color: var(--accent); }
-    h1 .dim { color: var(--muted); }
+    h1 .accent {
+      color: var(--accent);
+    }
+
+    h1 .dim {
+      color: var(--muted);
+    }
 
     .hero-sub {
       font-family: var(--body);
@@ -140,7 +167,10 @@
       animation: fadeUp 0.7s ease forwards 0.5s;
     }
 
-    .hero-sub b { color: var(--text); font-weight: 500; }
+    .hero-sub b {
+      color: var(--text);
+      font-weight: 500;
+    }
 
     .hero-cta-group {
       display: flex;
@@ -184,7 +214,10 @@
       transition: color 0.15s, border-color 0.15s;
     }
 
-    .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
+    .btn-ghost:hover {
+      color: var(--text);
+      border-color: var(--muted);
+    }
 
     .founding-note {
       font-family: var(--mono);
@@ -195,7 +228,9 @@
       animation: fadeUp 0.7s ease forwards 0.8s;
     }
 
-    .founding-note b { color: var(--accent); }
+    .founding-note b {
+      color: var(--accent);
+    }
 
     /* ── TICKER ── */
     .ticker-wrap {
@@ -226,8 +261,13 @@
     }
 
     @keyframes ticker {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     /* ── SECTION SHARED ── */
@@ -286,7 +326,8 @@
     .problem-card.bad::before {
       content: '✗';
       position: absolute;
-      top: 20px; right: 24px;
+      top: 20px;
+      right: 24px;
       font-size: 18px;
       color: var(--red);
       opacity: 0.5;
@@ -295,7 +336,8 @@
     .problem-card.good::before {
       content: '✓';
       position: absolute;
-      top: 20px; right: 24px;
+      top: 20px;
+      right: 24px;
       font-size: 18px;
       color: var(--accent);
       opacity: 0.6;
@@ -309,8 +351,13 @@
       margin-bottom: 20px;
     }
 
-    .problem-card.bad h3 { color: var(--red); }
-    .problem-card.good h3 { color: var(--accent); }
+    .problem-card.bad h3 {
+      color: var(--red);
+    }
+
+    .problem-card.good h3 {
+      color: var(--accent);
+    }
 
     .problem-card ul {
       list-style: none;
@@ -325,9 +372,13 @@
       line-height: 1.5;
     }
 
-    .problem-card ul li:last-child { border-bottom: none; }
+    .problem-card ul li:last-child {
+      border-bottom: none;
+    }
 
-    .problem-card.good ul li { color: #bbb; }
+    .problem-card.good ul li {
+      color: #bbb;
+    }
 
     /* ── HOW IT WORKS ── */
     .how {
@@ -359,7 +410,9 @@
       cursor: default;
     }
 
-    .step:hover { background: rgba(255,255,255,0.02); }
+    .step:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
 
     .step-num {
       font-family: var(--display);
@@ -369,7 +422,9 @@
       transition: color 0.2s;
     }
 
-    .step:hover .step-num { color: var(--accent); }
+    .step:hover .step-num {
+      color: var(--accent);
+    }
 
     .step-content h3 {
       font-family: var(--mono);
@@ -401,7 +456,7 @@
     .founding {
       padding: 100px 0;
       border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, transparent, rgba(232,255,71,0.03) 50%, transparent);
+      background: linear-gradient(180deg, transparent, rgba(232, 255, 71, 0.03) 50%, transparent);
     }
 
     .founding-inner {
@@ -418,7 +473,9 @@
       margin-bottom: 24px;
     }
 
-    .founding h2 .accent { color: var(--accent); }
+    .founding h2 .accent {
+      color: var(--accent);
+    }
 
     .founding-desc {
       font-size: 15px;
@@ -449,7 +506,7 @@
       width: 32px;
       height: 32px;
       background: var(--accent-dim);
-      border: 1px solid rgba(232,255,71,0.2);
+      border: 1px solid rgba(232, 255, 71, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -523,7 +580,9 @@
       margin-bottom: 8px;
     }
 
-    .slots-label b { color: var(--red); }
+    .slots-label b {
+      color: var(--red);
+    }
 
     .progress {
       height: 3px;
@@ -551,8 +610,13 @@
       margin-bottom: 32px;
     }
 
-    .final-cta h2 .accent { color: var(--accent); }
-    .final-cta h2 .dim { color: var(--muted); }
+    .final-cta h2 .accent {
+      color: var(--accent);
+    }
+
+    .final-cta h2 .dim {
+      color: var(--muted);
+    }
 
     .final-cta p {
       font-size: 16px;
@@ -589,12 +653,21 @@
       transition: color 0.15s;
     }
 
-    footer .f-links a:hover { color: var(--text); }
+    footer .f-links a:hover {
+      color: var(--text);
+    }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ── CURSOR BLINK ── */
@@ -609,8 +682,15 @@
     }
 
     @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
     }
 
     /* ── GRID BG ── */
@@ -619,8 +699,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(232,255,71,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(232,255,71,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(232, 255, 71, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 255, 71, 0.03) 1px, transparent 1px);
       background-size: 64px 64px;
       pointer-events: none;
       z-index: -1;
@@ -629,19 +709,53 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
-      .hero { padding: 100px 20px 60px; }
-      .container { padding: 0 20px; }
-      .problem-grid { grid-template-columns: 1fr; }
-      .step { grid-template-columns: 48px 1fr; }
-      .step-tag { display: none; }
-      .founding-inner { grid-template-columns: 1fr; gap: 48px; }
-      .price-card { padding: 32px; }
-      footer { flex-direction: column; gap: 16px; text-align: center; }
-      footer .f-links { flex-wrap: wrap; justify-content: center; }
+      nav {
+        padding: 16px 20px;
+      }
+
+      .hero {
+        padding: 100px 20px 60px;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
+      .problem-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        grid-template-columns: 48px 1fr;
+      }
+
+      .step-tag {
+        display: none;
+      }
+
+      .founding-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .price-card {
+        padding: 32px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      footer .f-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
@@ -649,25 +763,31 @@
     <a class="nav-logo" href="#">
       <svg width="520" height="120" viewBox="0 0 520 120" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_16_42)">
-          <path d="M516 0H4C1.79086 0 0 1.79086 0 4V116C0 118.209 1.79086 120 4 120H516C518.209 120 520 118.209 520 116V4C520 1.79086 518.209 0 516 0Z" fill="#080808"/>
-          <path d="M104 16H16V104H104V16Z" stroke="#1E1E1E" stroke-width="1.5"/>
-          <path d="M16 30V16H30" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square"/>
-          <path d="M90 104H104V90" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square"/>
-          <path d="M67 38L97 60L67 82" stroke="url(#paint0_nav)" stroke-width="7" stroke-linecap="square"/>
-          <path opacity="0.9" d="M25 50H55" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square"/>
-          <path opacity="0.6" d="M32 60H62" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square"/>
-          <path opacity="0.35" d="M25 70H55" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square"/>
-          <path d="M135.557 57H126.276V30.8182H135.634C138.267 30.8182 140.534 31.3423 142.435 32.3906C144.335 33.4304 145.797 34.9261 146.82 36.8778C147.851 38.8295 148.366 41.1648 148.366 43.8835C148.366 46.6108 147.851 48.9545 146.82 50.9148C145.797 52.875 144.327 54.3793 142.409 55.4276C140.5 56.4759 138.216 57 135.557 57ZM131.811 52.2571H135.327C136.963 52.2571 138.339 51.9673 139.456 51.3878C140.581 50.7997 141.425 49.892 141.987 48.6648C142.558 47.429 142.844 45.8352 142.844 43.8835C142.844 41.9489 142.558 40.3679 141.987 39.1406C141.425 37.9134 140.585 37.0099 139.469 36.4304C138.352 35.8509 136.976 35.5611 135.339 35.5611H131.811V52.2571ZM152.467 57V30.8182H170.109V35.3821H158.002V41.6207H169.201V46.1847H158.002V52.4361H170.16V57H152.467ZM179.24 30.8182L185.568 50.7102H185.811L192.152 30.8182H198.288L189.263 57H182.129L173.091 30.8182H179.24Z" fill="#F0F0F0"/>
-          <path d="M207.276 30.8182H214.102L221.312 48.4091H221.619L228.83 30.8182H235.656V57H230.287V39.9588H230.07L223.294 56.8722H219.638L212.862 39.8949H212.645V57H207.276V30.8182ZM244.73 57H238.798L247.836 30.8182H254.97L263.995 57H258.064L251.505 36.8011H251.301L244.73 57ZM244.359 46.7088H258.37V51.0298H244.359V46.7088ZM267.147 57V30.8182H277.476C279.453 30.8182 281.141 31.1719 282.539 31.8793C283.945 32.5781 285.015 33.571 285.748 34.858C286.489 36.1364 286.86 37.6406 286.86 39.3707C286.86 41.1094 286.485 42.6051 285.735 43.858C284.985 45.1023 283.898 46.0568 282.475 46.7216C281.06 47.3864 279.347 47.7188 277.336 47.7188H270.419V43.2699H276.441C277.498 43.2699 278.375 43.125 279.074 42.8352C279.773 42.5455 280.293 42.1108 280.634 41.5312C280.983 40.9517 281.158 40.2315 281.158 39.3707C281.158 38.5014 280.983 37.7685 280.634 37.1719C280.293 36.5753 279.769 36.1236 279.061 35.8168C278.363 35.5014 277.48 35.3438 276.415 35.3438H272.682V57H267.147ZM281.286 45.0852L287.793 57H281.682L275.316 45.0852H281.286ZM295.284 57H289.353L298.391 30.8182H305.525L314.55 57H308.618L302.06 36.8011H301.855L295.284 57ZM294.914 46.7088H308.925V51.0298H294.914V46.7088ZM313.505 35.3821V30.8182H335.008V35.3821H326.992V57H321.521V35.3821H313.505ZM338.549 57V30.8182H344.085V41.6207H355.322V30.8182H360.844V57H355.322V46.1847H344.085V57H338.549ZM389.468 43.9091C389.468 46.7642 388.927 49.1932 387.844 51.196C386.771 53.1989 385.305 54.7287 383.447 55.7855C381.597 56.8338 379.518 57.358 377.208 57.358C374.881 57.358 372.793 56.8295 370.944 55.7727C369.094 54.7159 367.633 53.1861 366.559 51.1832C365.485 49.1804 364.948 46.7557 364.948 43.9091C364.948 41.054 365.485 38.625 366.559 36.6222C367.633 34.6193 369.094 33.0937 370.944 32.0455C372.793 30.9886 374.881 30.4602 377.208 30.4602C379.518 30.4602 381.597 30.9886 383.447 32.0455C385.305 33.0937 386.771 34.6193 387.844 36.6222C388.927 38.625 389.468 41.054 389.468 43.9091ZM383.856 43.9091C383.856 42.0597 383.579 40.5 383.025 39.2301C382.479 37.9602 381.708 36.9972 380.711 36.3409C379.714 35.6847 378.546 35.3565 377.208 35.3565C375.87 35.3565 374.702 35.6847 373.705 36.3409C372.708 36.9972 371.933 37.9602 371.379 39.2301C370.833 40.5 370.56 42.0597 370.56 43.9091C370.56 45.7585 370.833 47.3182 371.379 48.5881C371.933 49.858 372.708 50.821 373.705 51.4773C374.702 52.1335 375.87 52.4616 377.208 52.4616C378.546 52.4616 379.714 52.1335 380.711 51.4773C381.708 50.821 382.479 49.858 383.025 48.5881C383.579 47.3182 383.856 45.7585 383.856 43.9091ZM415.468 30.8182V57H410.686L399.296 40.5213H399.104V57H393.569V30.8182H398.426L409.728 47.2841H409.958V30.8182H415.468Z" fill="#E8FF47"/>
-          <path d="M124 64H490" stroke="#1E1E1E"/>
+          <path
+            d="M516 0H4C1.79086 0 0 1.79086 0 4V116C0 118.209 1.79086 120 4 120H516C518.209 120 520 118.209 520 116V4C520 1.79086 518.209 0 516 0Z"
+            fill="#080808" />
+          <path d="M104 16H16V104H104V16Z" stroke="#1E1E1E" stroke-width="1.5" />
+          <path d="M16 30V16H30" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square" />
+          <path d="M90 104H104V90" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square" />
+          <path d="M67 38L97 60L67 82" stroke="url(#paint0_nav)" stroke-width="7" stroke-linecap="square" />
+          <path opacity="0.9" d="M25 50H55" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square" />
+          <path opacity="0.6" d="M32 60H62" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square" />
+          <path opacity="0.35" d="M25 70H55" stroke="#E8FF47" stroke-width="2.5" stroke-linecap="square" />
+          <path
+            d="M135.557 57H126.276V30.8182H135.634C138.267 30.8182 140.534 31.3423 142.435 32.3906C144.335 33.4304 145.797 34.9261 146.82 36.8778C147.851 38.8295 148.366 41.1648 148.366 43.8835C148.366 46.6108 147.851 48.9545 146.82 50.9148C145.797 52.875 144.327 54.3793 142.409 55.4276C140.5 56.4759 138.216 57 135.557 57ZM131.811 52.2571H135.327C136.963 52.2571 138.339 51.9673 139.456 51.3878C140.581 50.7997 141.425 49.892 141.987 48.6648C142.558 47.429 142.844 45.8352 142.844 43.8835C142.844 41.9489 142.558 40.3679 141.987 39.1406C141.425 37.9134 140.585 37.0099 139.469 36.4304C138.352 35.8509 136.976 35.5611 135.339 35.5611H131.811V52.2571ZM152.467 57V30.8182H170.109V35.3821H158.002V41.6207H169.201V46.1847H158.002V52.4361H170.16V57H152.467ZM179.24 30.8182L185.568 50.7102H185.811L192.152 30.8182H198.288L189.263 57H182.129L173.091 30.8182H179.24Z"
+            fill="#F0F0F0" />
+          <path
+            d="M207.276 30.8182H214.102L221.312 48.4091H221.619L228.83 30.8182H235.656V57H230.287V39.9588H230.07L223.294 56.8722H219.638L212.862 39.8949H212.645V57H207.276V30.8182ZM244.73 57H238.798L247.836 30.8182H254.97L263.995 57H258.064L251.505 36.8011H251.301L244.73 57ZM244.359 46.7088H258.37V51.0298H244.359V46.7088ZM267.147 57V30.8182H277.476C279.453 30.8182 281.141 31.1719 282.539 31.8793C283.945 32.5781 285.015 33.571 285.748 34.858C286.489 36.1364 286.86 37.6406 286.86 39.3707C286.86 41.1094 286.485 42.6051 285.735 43.858C284.985 45.1023 283.898 46.0568 282.475 46.7216C281.06 47.3864 279.347 47.7188 277.336 47.7188H270.419V43.2699H276.441C277.498 43.2699 278.375 43.125 279.074 42.8352C279.773 42.5455 280.293 42.1108 280.634 41.5312C280.983 40.9517 281.158 40.2315 281.158 39.3707C281.158 38.5014 280.983 37.7685 280.634 37.1719C280.293 36.5753 279.769 36.1236 279.061 35.8168C278.363 35.5014 277.48 35.3438 276.415 35.3438H272.682V57H267.147ZM281.286 45.0852L287.793 57H281.682L275.316 45.0852H281.286ZM295.284 57H289.353L298.391 30.8182H305.525L314.55 57H308.618L302.06 36.8011H301.855L295.284 57ZM294.914 46.7088H308.925V51.0298H294.914V46.7088ZM313.505 35.3821V30.8182H335.008V35.3821H326.992V57H321.521V35.3821H313.505ZM338.549 57V30.8182H344.085V41.6207H355.322V30.8182H360.844V57H355.322V46.1847H344.085V57H338.549ZM389.468 43.9091C389.468 46.7642 388.927 49.1932 387.844 51.196C386.771 53.1989 385.305 54.7287 383.447 55.7855C381.597 56.8338 379.518 57.358 377.208 57.358C374.881 57.358 372.793 56.8295 370.944 55.7727C369.094 54.7159 367.633 53.1861 366.559 51.1832C365.485 49.1804 364.948 46.7557 364.948 43.9091C364.948 41.054 365.485 38.625 366.559 36.6222C367.633 34.6193 369.094 33.0937 370.944 32.0455C372.793 30.9886 374.881 30.4602 377.208 30.4602C379.518 30.4602 381.597 30.9886 383.447 32.0455C385.305 33.0937 386.771 34.6193 387.844 36.6222C388.927 38.625 389.468 41.054 389.468 43.9091ZM383.856 43.9091C383.856 42.0597 383.579 40.5 383.025 39.2301C382.479 37.9602 381.708 36.9972 380.711 36.3409C379.714 35.6847 378.546 35.3565 377.208 35.3565C375.87 35.3565 374.702 35.6847 373.705 36.3409C372.708 36.9972 371.933 37.9602 371.379 39.2301C370.833 40.5 370.56 42.0597 370.56 43.9091C370.56 45.7585 370.833 47.3182 371.379 48.5881C371.933 49.858 372.708 50.821 373.705 51.4773C374.702 52.1335 375.87 52.4616 377.208 52.4616C378.546 52.4616 379.714 52.1335 380.711 51.4773C381.708 50.821 382.479 49.858 383.025 48.5881C383.579 47.3182 383.856 45.7585 383.856 43.9091ZM415.468 30.8182V57H410.686L399.296 40.5213H399.104V57H393.569V30.8182H398.426L409.728 47.2841H409.958V30.8182H415.468Z"
+            fill="#E8FF47" />
+          <path d="M124 64H490" stroke="#1E1E1E" />
         </g>
         <defs>
           <linearGradient id="paint0_nav" x1="67" y1="38" x2="4162.91" y2="2830.67" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#E8FF47"/>
-            <stop offset="1" stop-color="#C8E600"/>
+            <stop stop-color="#E8FF47" />
+            <stop offset="1" stop-color="#C8E600" />
           </linearGradient>
           <clipPath id="clip0_16_42">
-            <rect width="520" height="120" fill="white"/>
+            <rect width="520" height="120" fill="white" />
           </clipPath>
         </defs>
       </svg>
@@ -699,8 +819,9 @@
         View on GitHub ↗
       </a>
     </div>
-     <p class="founding-note">
-      <b>$15 one-time</b> &nbsp;·&nbsp; First 50 members only &nbsp;·&nbsp; Long-term 50% discount on all plans (valid while platform operates)
+    <p class="founding-note">
+      <b>$15/mo</b> &nbsp;·&nbsp; First 50 members only &nbsp;·&nbsp; Long-term 50% discount on all plans (valid while
+      platform operates)
     </p>
   </div>
 
@@ -766,7 +887,8 @@
           <div class="step-num">01</div>
           <div class="step-content">
             <h3>PICK A MARATHON</h3>
-            <p>Choose a 72-hour challenge — "Build an AI SaaS", "Ship a micro-startup", "Revenue-ready MVP". Every marathon has a clear goal and measurable output.</p>
+            <p>Choose a 72-hour challenge — "Build an AI SaaS", "Ship a micro-startup", "Revenue-ready MVP". Every
+              marathon has a clear goal and measurable output.</p>
           </div>
           <div class="step-tag">72h / 48h / 7d</div>
         </div>
@@ -774,7 +896,8 @@
           <div class="step-num">02</div>
           <div class="step-content">
             <h3>AI KICKOFF</h3>
-            <p>Enter your idea, stack, and target user. The AI generates system architecture, task breakdown, repo structure, milestone plan, and risk list. Your co-founder is ready.</p>
+            <p>Enter your idea, stack, and target user. The AI generates system architecture, task breakdown, repo
+              structure, milestone plan, and risk list. Your co-founder is ready.</p>
           </div>
           <div class="step-tag">AI Co-Founder</div>
         </div>
@@ -782,7 +905,8 @@
           <div class="step-num">03</div>
           <div class="step-content">
             <h3>BUILD UNDER PRESSURE</h3>
-            <p>Countdown timer. Daily checkpoints. AI progress reminders. Streak system. If you haven't committed in 12 hours, you'll hear about it.</p>
+            <p>Countdown timer. Daily checkpoints. AI progress reminders. Streak system. If you haven't committed in 12
+              hours, you'll hear about it.</p>
           </div>
           <div class="step-tag">Pressure System</div>
         </div>
@@ -790,7 +914,8 @@
           <div class="step-num">04</div>
           <div class="step-content">
             <h3>SHIP & SCORE</h3>
-            <p>AI evaluates your working features, code quality, deployability, and UX. You get a public portfolio page and a shareable skill score. CV is dead. This is your proof.</p>
+            <p>AI evaluates your working features, code quality, deployability, and UX. You get a public portfolio page
+              and a shareable skill score. CV is dead. This is your proof.</p>
           </div>
           <div class="step-tag">Public Portfolio</div>
         </div>
@@ -837,9 +962,8 @@
           </div>
           <div class="price-old">Regular price: $29+/mo</div>
           <div class="price-desc">
-            One-time payment.<br>
-            No subscription. No risk.<br>
-            Full refund if we don't launch.
+            50% discount on every package.<br>
+            Full refund if we fail to launch.
           </div>
           <div class="slots-bar">
             <div class="slots-label">
@@ -851,7 +975,8 @@
             </div>
           </div>
           <!-- Replace href with your Lemon Squeezy payment link -->
-          <a href="mailto:devmarathonapp@gmail.com?subject=Early%20Access%20Request" class="btn-primary" style="width:100%;justify-content:center;">
+          <a href="mailto:devmarathonapp@gmail.com?subject=Early%20Access%20Request" class="btn-primary"
+            style="width:100%;justify-content:center;">
             Claim Your Spot &nbsp;→
           </a>
         </div>
@@ -870,7 +995,8 @@
       </h2>
       <p>devmarathon.com &nbsp;·&nbsp; building in public<span class="blink"></span></p>
       <!-- Replace href with your Lemon Squeezy payment link -->
-      <a href="mailto:devmarathonapp@gmail.com?subject=Early%20Access%20Request" class="btn-primary" style="font-size:15px;padding:20px 48px;">
+      <a href="mailto:devmarathonapp@gmail.com?subject=Early%20Access%20Request" class="btn-primary"
+        style="font-size:15px;padding:20px 48px;">
         Join DevMarathon — $15 &nbsp;→
       </a>
     </div>
@@ -888,4 +1014,5 @@
     </div>
   </footer>
 </body>
+
 </html>
